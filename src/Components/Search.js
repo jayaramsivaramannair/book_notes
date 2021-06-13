@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+const API = 'AIzaSyBVrXAK-6urEQXprz3uJMZOomYQwgXtj0Y'
+
 export default function Search({ assignResults }) {
 
     const [term, setTerm] = useState("")
@@ -13,16 +15,13 @@ export default function Search({ assignResults }) {
 
     const handleSearch = async (event) => {
         console.log('Button Clicked!')
-        const books = await axios.get(`http://openlibrary.org/search.json?q=${term}`)
+        const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API}`)
         //Picks the first result from the results
-        console.log(books.data.docs[0].isbn[0])
-        //Searches book cover by isbn
-        const specificBook = await axios.get(`http://covers.openlibrary.org/b/isbn/${books.data.docs[0].isbn[0]}-M.jpg`)
-        console.log(specificBook.config.url)
-        assignResults(specificBook.config.url)
+        console.log(books.data.items)
+        assignResults(books.data.items)
     }
     return (
-        <div className="ui action input container">
+        <div className="ui action input">
             <input
                 type="text"
                 placeholder="Search Books..."

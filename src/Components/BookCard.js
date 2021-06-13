@@ -1,11 +1,18 @@
 import React from 'react'
 
-export default function BookCard({ bookResults }) {
+export default function BookCard({ result }) {
+    console.log(result)
+
+    if (!result || !result.volumeInfo.imageLinks.hasOwnProperty('thumbnail')) {
+        return <p> There is no image to display </p>
+    }
     return (
-        < div className="ui card" style={{ maxHeight: '100px', maxWidth: '100px' }}>
-            <div className="image">
-                <img alt="book result" src={bookResults} />
-            </div>
+        < div >
+            {
+                (result.volumeInfo.imageLinks.thumbnail) ?
+                    <img alt={result.volumeInfo.title} src={result.volumeInfo.imageLinks.thumbnail} /> :
+                    "There is no image to display"
+            }
         </div>
     )
 }

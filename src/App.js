@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import Search from './Components/Search.js'
 import Results from './Components/Results.js'
-import BookCard from './Components/BookCard.js'
 
 function App() {
 
-  const [results, setResults] = useState('')
+  const [results, setResults] = useState([])
 
   const assignResults = (results) => {
     setResults(results)
@@ -17,7 +16,6 @@ function App() {
       <h1>Book Notes</h1>
       <Search assignResults={assignResults} />
       <Results bookResults={results} />
-      <BookCard bookResults={results} />
     </div>
   );
 }
