@@ -1,16 +1,16 @@
 import React from 'react'
 import BookCard from './BookCard.js'
 
-export default function Results({ bookResults }) {
-    if (!bookResults) {
-        <p>There are no results to display</p>
+export default function Results({ bookResults, loading }) {
+    if (loading && bookResults.length < 10) {
+        return <p>Loading Results...</p>
     }
+
     return (
-        <div>
-            <h2>Search Results:</h2>
+        <div className="results">
             {bookResults &&
                 bookResults.map((result, index) => {
-                    return <BookCard key={index} result={result} />
+                    return <BookCard key={index} result={result} loading={loading} />
                 })}
         </div>
     )

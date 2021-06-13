@@ -10,3 +10,10 @@ code {
 h1 {
   text-align: center;
 }
+
+.results {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+

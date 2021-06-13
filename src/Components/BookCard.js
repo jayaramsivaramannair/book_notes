@@ -1,17 +1,18 @@
 import React from 'react'
 
 export default function BookCard({ result }) {
-    console.log(result)
 
-    if (!result || !result.volumeInfo.imageLinks.hasOwnProperty('thumbnail')) {
+    if (typeof result === 'undefined') {
         return <p> There is no image to display </p>
     }
+
+
     return (
         < div >
             {
-                (result.volumeInfo.imageLinks.thumbnail) ?
-                    <img alt={result.volumeInfo.title} src={result.volumeInfo.imageLinks.thumbnail} /> :
-                    "There is no image to display"
+                (typeof result.volumeInfo.imageLinks !== 'undefined') ?
+                    <img alt={result.volumeInfo.title} src={result.volumeInfo.imageLinks.thumbnail} />
+                    : 'There is no image to display!'
             }
         </div>
     )
