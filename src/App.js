@@ -7,6 +7,7 @@ function App() {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
 
+
   const assignResults = (results) => {
     setResults(results)
   }
@@ -20,7 +21,13 @@ function App() {
     <div className="App ui container">
       <h1>Book Notes</h1>
       <Search assignResults={assignResults} setLoading={changeLoadingStatus} loading={loading} />
-      <Results bookResults={results} loading={loading} />
+      {
+        (loading) ?
+          <div className="ui active dimmer" style={{ backgroundColor: 'black' }}>
+            <div className="ui text loader">Fetching Books...</div>
+          </div> : <Results bookResults={results} loading={loading} />
+      }
+
     </div>
   );
 }

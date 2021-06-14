@@ -13,16 +13,16 @@ export default function Search({ assignResults, setLoading, loading }) {
 
     }
 
+
     const handleSearch = async (event) => {
+        //Empties the array
         assignResults([])
         console.log('Button Clicked!')
         setLoading(true)
         const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API}`)
-        //Picks the first result from the results
+
         console.log(books.data.items)
-        if (books.data.items.length === 10) {
-            setLoading(false)
-        }
+        setLoading(false)
         assignResults(books.data.items)
     }
 
