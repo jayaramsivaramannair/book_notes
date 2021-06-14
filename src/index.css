@@ -1,20 +1,31 @@
 * {
   margin: 0;
-  background-color: black;
 }
 
+body {
+  background-color: aliceblue;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-h1 {
-  text-align: center;
+p {
+  color: lightcoral;
+  font-size: 10px;
+  font-style: italic;
 }
 
 .results {
   display: grid;
   margin-top: 10px;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.buttons .btn-details, .buttons .btn-library {
+  background-color: lightblue;
+  margin-right: 10px;
+  border: 1px solid lightblue;
+  border-radius: 5px;
 }
 
