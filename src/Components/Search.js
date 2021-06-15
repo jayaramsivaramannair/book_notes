@@ -19,7 +19,7 @@ export default function Search({ assignResults, setLoading, loading }) {
         assignResults([])
         console.log('Button Clicked!')
         setLoading(true)
-        const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API}&maxResults=5`)
+        const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API}&maxResults=10`)
 
         console.log(books.data.items)
         setLoading(false)

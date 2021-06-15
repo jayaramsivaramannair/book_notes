@@ -14,6 +14,7 @@ p {
   color: lightcoral;
   font-size: 10px;
   font-style: italic;
+  text-align: center;
 }
 
 .results {
@@ -22,10 +23,36 @@ p {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.buttons .btn-details, .buttons .btn-library {
-  background-color: lightblue;
-  margin-right: 10px;
-  border: 1px solid lightblue;
+button .ui, .primary {
+  color: white;
+  background-color: #00acee;
+  border: 1px solid aliceblue;
+  margin-right: 5px;
   border-radius: 5px;
 }
+
+.card {
+  border: 1px solid aliceblue;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px gray, -1em 0 .4em gray;
+}
+
+.card .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .content {
+  margin-top: 10px;
+}
+
+.card .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 

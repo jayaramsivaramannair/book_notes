@@ -23,8 +23,8 @@ function App() {
       <Search assignResults={assignResults} setLoading={changeLoadingStatus} loading={loading} />
       {
         (loading) ?
-          <div className="ui active dimmer" style={{ backgroundColor: 'black' }}>
-            <div className="ui text loader">Fetching Books...</div>
+          <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
+            <div className="ui text loader" style={{ color: 'black' }}>Fetching Books...</div>
           </div> : <Results bookResults={results} loading={loading} />
       }
 

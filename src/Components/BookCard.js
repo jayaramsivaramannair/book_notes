@@ -8,8 +8,8 @@ export default function BookCard({ result }) {
 
 
     return (
-        <div>
-            <div>
+        <div className="card">
+            <div className="image">
                 {
                     (typeof result.volumeInfo.imageLinks !== 'undefined') ?
                         <img alt={result.volumeInfo.title} src={result.volumeInfo.imageLinks.thumbnail} />
@@ -22,8 +22,8 @@ export default function BookCard({ result }) {
                 <p>Publisher: {result.volumeInfo.publisher}</p>
                 <p>Publication Date: {result.volumeInfo.publishedDate}</p>
                 <div className="buttons">
-                    <button className="btn-details">Details</button>
-                    <button className="btn-library">Add to Library</button>
+                    <button className="ui primary">Details</button>
+                    <button className="ui primary">Add to Library</button>
                 </div>
             </div>
         </div>
