@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import Search from './Components/Search.js'
-import Results from './Components/Results.js'
+import Dashboard from './Components/Dashboard.js'
 
 function App() {
 
@@ -20,14 +19,12 @@ function App() {
   return (
     <div className="App ui container">
       <h1>Book Notes</h1>
-      <Search assignResults={assignResults} setLoading={changeLoadingStatus} loading={loading} />
-      {
-        (loading) ?
-          <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
-            <div className="ui text loader" style={{ color: 'black' }}>Fetching Books...</div>
-          </div> : <Results bookResults={results} loading={loading} />
-      }
-
+      <Dashboard
+        assignResults={assignResults}
+        setLoading={changeLoadingStatus}
+        loading={loading}
+        bookResults={results}
+      />
     </div>
   );
 }
