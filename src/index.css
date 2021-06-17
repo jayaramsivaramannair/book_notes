@@ -6,6 +6,36 @@
 body {
   background-color: aliceblue;
 }
+
+.wrapper {
+  max-width: 1020px;
+  margin: 0 20px;
+  display: grid;
+}
+
+.header {
+  background-color: lightblue;
+  height: 10vh;
+}
+
+.footer {
+  height: 10vh;
+}
+
+.footer h6 {
+  text-align: right;
+}
+
+
+.firstPanel {
+  height: 50vh;
+  width: 40vw;
+  background-image: url('./assets/gummy-programming.svg');
+  background-position: center;
+  background-size: cover;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -24,7 +54,7 @@ p {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-button .ui, .primary, .modal-footer button {
+button  {
   color: white;
   background-color: #00acee;
   border: 1px solid aliceblue;

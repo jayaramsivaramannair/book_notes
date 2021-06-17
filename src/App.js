@@ -20,7 +20,6 @@ function App() {
 
   return (
     <div className="App ui container">
-      <h1>Book Notes</h1>
       {/*Home page will be defaulted to if no other routes are found*/}
       <Switch>
         <Route exact path="/dashboard">
