@@ -118,5 +118,18 @@ button  {
   margin: 1rem 0 2rem 0;
 }
 
+div.active.modal.large {
+  margin: 100px;
+  max-width: 500px;
+  opacity: 0.95;
+  height: 50vh;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 
 
