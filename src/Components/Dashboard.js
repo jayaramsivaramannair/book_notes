@@ -15,10 +15,18 @@ const Dashboard = ({ loading, clearSearch }) => {
         clearSearch()
     }
 
+    //Clears the token from local storage when the user logs out
+    const logoutUser = (evt) => {
+        evt.preventDefault();
+        localStorage.removeItem('authToken');
+        history.push('/')
+    }
+
     return (
         <div>
-            <div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
                 <button onClick={navigateHome}>Home</button>
+                <button onClick={logoutUser}>LogOut</button>
             </div>
             <Search />
             {
