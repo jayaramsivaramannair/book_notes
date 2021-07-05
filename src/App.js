@@ -8,15 +8,12 @@ import LoginForm from './Components/LoginForm.js'
 function App() {
   return (
     <div className="App ui container">
-      {/*Home page will be defaulted to if no other routes are found*/}
       <Switch>
-
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-
         <Route exact path="/login">
           <LoginForm />
         </Route>
-
+        {/*Landing page will be defaulted to if no other routes are found*/}
         <Route path="/">
           <Landing />
         </Route>

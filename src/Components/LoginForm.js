@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 const LoginForm = (props) => {
     const [formValues, setFormValues] = useState({
         email: '',
         password: '',
     })
+
+    const [loading, setLoading] = useState(false)
 
     const history = useHistory()
 
@@ -17,12 +19,12 @@ const LoginForm = (props) => {
 
     const submitForm = (evt) => {
         evt.preventDefault()
-        console.log(formValues)
+        setLoading(true)
         axios.post("https://fifty-two-book-notes.herokuapp.com/api/login", formValues)
-            .then((res) => {
-                console.log(res.data)
-                //Waits for the response to come in and then sets the token on localStorage
-                localStorage.setItem('authToken', res.data.token)
+            .then((response) => {
+                console.log(response)
+                localStorage.setItem('authToken', response.data.token)
+                setLoading(false)
                 history.push('/dashboard')
             })
             .catch((err) => {
@@ -30,31 +32,38 @@ const LoginForm = (props) => {
             })
         setFormValues({ ...formValues, email: '', password: '' })
     }
-
     return (
         <div>
-            <h1>Login</h1>
-            <button onClick={() => history.push('/')}>Return to Home</button>
-            <form onSubmit={submitForm}>
-                <label >E-Mail:</label>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter Email"
-                    value={formValues.email}
-                    onChange={registerFormValues}
-                />
-                <label>Password:</label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Enter Password"
-                    value={formValues.password}
-                    onChange={registerFormValues}
-                />
-                <button>Login</button>
-                <button>Don't have an account? Click Here to Register!</button>
-            </form>
+            {
+                (loading) ?
+                    <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
+                        <div className="ui text loader" style={{ color: 'black' }}>Hold On Tight</div>
+                    </div> :
+                    <div>
+                        <h1>Login</h1>
+                        <button onClick={() => history.push('/')}>Return to Home</button>
+                        <form onSubmit={submitForm}>
+                            <label >E-Mail:</label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter Email"
+                                value={formValues.email}
+                                onChange={registerFormValues}
+                            />
+                            <label>Password:</label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter Password"
+                                value={formValues.password}
+                                onChange={registerFormValues}
+                            />
+                            <button>Login</button>
+                            <button>Don't have an account? Click Here to Register!</button>
+                        </form>
+                    </div>
+            }
         </div>
     )
 }
