@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { clearSearch } from '../actions/index'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import Search from './Search.js'
 import Results from './Results.js'
 
-const Dashboard = ({ loading }) => {
+const Dashboard = ({ loading, clearSearch }) => {
     const history = useHistory()
     console.log(useLocation())
 
     const navigateHome = () => {
         history.push('/')
+        clearSearch()
     }
 
     return (
@@ -36,4 +38,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps, { clearSearch })(Dashboard)

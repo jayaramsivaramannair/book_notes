@@ -11,3 +11,7 @@ export const fetchBooks = (term) => async dispatch => {
     console.log(response)
     dispatch({ type: 'FETCH_BOOKS_FINISH', payload: response.data.items })
 }
+
+export const clearSearch = () => {
+    return { type: 'CLEAR_SEARCH_RESULTS' }
+}

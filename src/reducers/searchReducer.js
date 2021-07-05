@@ -10,6 +10,8 @@ const searchReducer = (state = initialState, action) => {
             return { ...state, loading: true, books: [] }
         case 'FETCH_BOOKS_FINISH':
             return { ...state, loading: false, books: action.payload }
+        case 'CLEAR_SEARCH_RESULTS':
+            return { ...state, loading: false, books: [] }
         default:
             return state;
     }
