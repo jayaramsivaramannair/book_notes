@@ -4,12 +4,14 @@ import Dashboard from './Components/Dashboard.js'
 import PrivateRoute from './Components/PrivateRoute.js'
 import Landing from './Components/Landing.js'
 import LoginForm from './Components/LoginForm.js'
+import Library from './Components/Library.js'
 
 function App() {
   return (
     <div className="App ui container">
       <Switch>
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/library" component={Library} />
         <Route exact path="/login">
           <LoginForm />
         </Route>

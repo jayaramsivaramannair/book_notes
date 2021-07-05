@@ -15,6 +15,11 @@ const Dashboard = ({ loading, clearSearch }) => {
         clearSearch()
     }
 
+    const navigateLibrary = () => {
+        history.push('/library')
+        clearSearch()
+    }
+
     //Clears the token from local storage when the user logs out
     const logoutUser = (evt) => {
         evt.preventDefault();
@@ -26,6 +31,7 @@ const Dashboard = ({ loading, clearSearch }) => {
         <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
                 <button onClick={navigateHome}>Home</button>
+                <button onClick={navigateLibrary}>My Library</button>
                 <button onClick={logoutUser}>LogOut</button>
             </div>
             <Search />

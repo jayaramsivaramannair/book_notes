@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { saveLoginDetails } from '../actions'
 
-const LoginForm = (props) => {
+const LoginForm = ({ saveLoginDetails }) => {
     const [formValues, setFormValues] = useState({
         email: '',
         password: '',
@@ -22,8 +24,9 @@ const LoginForm = (props) => {
         setLoading(true)
         axios.post("https://fifty-two-book-notes.herokuapp.com/api/login", formValues)
             .then((response) => {
-                console.log(response)
                 localStorage.setItem('authToken', response.data.token)
+                console.log(response.data)
+                saveLoginDetails(response.data)
                 setLoading(false)
                 history.push('/dashboard')
             })
@@ -68,4 +71,4 @@ const LoginForm = (props) => {
     )
 }
 
-export default LoginForm;
+export default connect(null, { saveLoginDetails })(LoginForm)
