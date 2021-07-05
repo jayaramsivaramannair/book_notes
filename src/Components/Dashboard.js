@@ -1,10 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom'
 
 import Search from './Search.js'
 import Results from './Results.js'
 
-export default function Dashboard({ assignResults, setLoading, loading, bookResults }) {
+const Dashboard = ({ loading }) => {
     const history = useHistory()
     console.log(useLocation())
 
@@ -15,19 +16,24 @@ export default function Dashboard({ assignResults, setLoading, loading, bookResu
     return (
         <div>
             <div>
-                {/* 
-                    <Link to="/">Home</Link> One Approach for navigation
-                */}
                 <button onClick={navigateHome}>Home</button>
-
             </div>
-            <Search assignResults={assignResults} setLoading={setLoading} loading={loading} />
+            <Search />
             {
                 (loading) ?
                     <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
                         <div className="ui text loader" style={{ color: 'black' }}>Fetching Books...</div>
-                    </div> : <Results bookResults={bookResults} loading={loading} />
+                    </div> : <Results />
             }
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    console.log(state.search.loading)
+    return {
+        loading: state.search.loading
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard)

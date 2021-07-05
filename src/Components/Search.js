@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { fetchBooks, startFetching } from '../actions';
 
+/*
 const API = 'AIzaSyBVrXAK-6urEQXprz3uJMZOomYQwgXtj0Y'
+*/
 
-export default function Search({ assignResults, setLoading, loading }) {
+const Search = ({ fetchBooks, startFetching, books }) => {
 
     const [term, setTerm] = useState("")
 
@@ -13,17 +16,10 @@ export default function Search({ assignResults, setLoading, loading }) {
 
     }
 
-
     const handleSearch = async (event) => {
-        //Empties the array
-        assignResults([])
         console.log('Button Clicked!')
-        setLoading(true)
-        const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&key=${API}&maxResults=10`)
-
-        console.log(books.data.items)
-        setLoading(false)
-        assignResults(books.data.items)
+        startFetching();
+        fetchBooks(term)
     }
 
     return (
@@ -38,3 +34,5 @@ export default function Search({ assignResults, setLoading, loading }) {
         </div>
     )
 }
+
+export default connect(null, { fetchBooks, startFetching })(Search)

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom';
 import Dashboard from './Components/Dashboard.js'
 import Home from './Components/Home.js'
+import LoginForm from './Components/LoginForm.js'
 
 function App() {
 
@@ -29,6 +30,9 @@ function App() {
             loading={loading}
             bookResults={results}
           />
+        </Route>
+        <Route exact path="/login">
+          <LoginForm />
         </Route>
         <Route path="/">
           <Home />

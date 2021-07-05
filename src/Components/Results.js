@@ -1,13 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import BookCard from './BookCard.js'
 
-export default function Results({ bookResults, loading }) {
+const Results = ({ books }) => {
+
     return (
         <div className="results">
-            {bookResults &&
-                bookResults.map((result, index) => {
-                    return <BookCard key={index} result={result} loading={loading} />
-                })}
+            {(books) ?
+                books.map((book, index) => {
+                    return <BookCard key={index} book={book} />
+                }) : <div>No Search Results Found!</div>}
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        books: state.search.books
+    }
+}
+
+export default connect(mapStateToProps)(Results)

@@ -1,34 +1,30 @@
-import React, { useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom';
-import FormModal from './FormModal.js'
+import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 function Landing() {
 
     const history = useHistory()
 
-    const [showForm, setShowForm] = useState(false)
-    console.log(useLocation())
-
     const navigateDashboard = () => {
         history.push('/dashboard')
     }
 
-    const displayForm = () => {
-        setShowForm(false)
+    const navigateLogin = () => {
+        history.push('/login')
     }
 
     return (
         <div className="wrapper">
-            <header className="header" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <header className="header" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr' }}>
                 <h1>One Fifty Two</h1>
                 <button onClick={navigateDashboard}>
                     Dashboard
                 </button>
-                <button onClick={(e) => setShowForm(true)}>
-                    Login / Register
+                <button onClick={navigateLogin}>
+                    Login
                 </button>
             </header>
-            <section className="main" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <section className="main" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}>
                 <div className="firstPanel"></div>
                 <div className="secondPanel">
                     <h2>Welcome to One-Fifty Two</h2>
@@ -41,11 +37,6 @@ function Landing() {
                 </div>
             </section>
             {/* A place for adding carousel*/}
-            {/* form should be set up using a modal */}
-            {
-                showForm ? <FormModal displayForm={displayForm} showForm={showForm} /> : null
-            }
-
             <footer className="footer"><h5>&copy; One-Fifty-Two</h5></footer>
         </div>
     )

@@ -1,34 +1,28 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
-export default function FormModal({ displayForm, showForm }) {
-    const cancelButtonHandler = () => {
-        displayForm()
-    }
-
+const LoginForm = (props) => {
     const [formValues, setFormValues] = useState({
-        userName: '',
         email: '',
         password: '',
     })
 
+    const history = useHistory()
+
     const registerFormValues = (event) => {
-        console.log(event.target.value)
+        setFormValues({ ...formValues, [event.target.name]: event.target.value })
+        console.log(formValues)
     }
 
     return (
-        <div className={showForm ? "ui large active modal" : "ui large modal"}>
-            <h1>Login / Register</h1>
+        <div>
+            <h1>Login</h1>
+            <button onClick={() => history.push('/')}>Return to Home</button>
             <form>
-                <label>User Name:</label>
-                <input
-                    type="text"
-                    placeholder="Enter User Name"
-                    value={formValues.userName}
-                    onChange={registerFormValues}
-                />
                 <label>E-Mail:</label>
                 <input
                     type="email"
+                    name="email"
                     placeholder="Enter Email"
                     value={formValues.email}
                     onChange={registerFormValues}
@@ -36,13 +30,16 @@ export default function FormModal({ displayForm, showForm }) {
                 <label>Password:</label>
                 <input
                     type="password"
+                    name="password"
                     placeholder="Enter Password"
                     value={formValues.password}
                     onChange={registerFormValues}
                 />
 
             </form>
-            <button onClick={cancelButtonHandler}>Cancel</button>
+            <button>Login</button>
         </div>
     )
 }
+
+export default LoginForm;
