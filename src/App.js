@@ -1,42 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom';
 import Dashboard from './Components/Dashboard.js'
-import Home from './Components/Home.js'
+import Landing from './Components/Landing.js'
 import LoginForm from './Components/LoginForm.js'
 
 function App() {
-
-  const [results, setResults] = useState([])
-  const [loading, setLoading] = useState(false)
-
-
-  const assignResults = (results) => {
-    setResults(results)
-  }
-
-  const changeLoadingStatus = (status) => {
-    setLoading(status)
-  }
-
-
   return (
     <div className="App ui container">
       {/*Home page will be defaulted to if no other routes are found*/}
       <Switch>
+
         <Route exact path="/dashboard">
-          <Dashboard
-            assignResults={assignResults}
-            setLoading={changeLoadingStatus}
-            loading={loading}
-            bookResults={results}
-          />
+          <Dashboard />
         </Route>
+
         <Route exact path="/login">
           <LoginForm />
         </Route>
+
         <Route path="/">
-          <Home />
+          <Landing />
         </Route>
+
       </Switch>
     </div>
   );
