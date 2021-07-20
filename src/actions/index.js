@@ -30,6 +30,16 @@ export const finishLibraryDownload = (userId) => async dispatch => {
     dispatch({ type: 'LIBRARY_DOWNLOAD_FINISH', payload: response.data })
 }
 
+export const startNotesDownload = () => {
+    return {type: 'NOTES_DOWNLOAD_START'}
+}
+
+export const finishNotesDownload = (bookID) => async dispatch => {
+    const response = await axiosWithAuth().get(`/library/${bookID}/notes`)
+    console.log(response)
+    dispatch({type: 'NOTES_DOWNLOAD_FINISH', payload: response.data})
+}
+
 export const clearLibrary = () => {
     return { type: 'CLEAR_LIBRARY' }
 }

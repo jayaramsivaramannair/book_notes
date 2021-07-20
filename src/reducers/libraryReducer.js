@@ -11,7 +11,7 @@ const libraryReducer = (state = initialState, action) => {
         case 'LIBRARY_DOWNLOAD_FINISH':
             return { ...state, loading: false, library: action.payload }
         case 'CLEAR_LIBRARY':
-            return {}
+            return []
         default:
             return state;
     }

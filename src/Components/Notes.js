@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams , useHistory} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {startNotesDownload, finishNotesDownload} from '../actions'
+import NoteCard from './NoteCard.js'
 
-const Notes = (props) => {
+
+const Notes = ({results, startNotesDownload, finishNotesDownload}) => {
     const {bookid} = useParams()
     console.log(bookid)
     const history = useHistory()
 
+    useEffect(() => {
+        startNotesDownload()
+        finishNotesDownload(bookid)
+    }, [])
+
     return (
         <div>
+            <h1>Note Repository</h1>
             <button onClick={() => history.push('/library')}>Back to Library</button>
-            {`You are viewing notes for book ID - ${bookid}`}
+            {
+                (results.loading && results.notes.length === 0) ?
+                <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
+                    <div className="ui text loader" style={{ color: 'black' }}>Fetching Notes...</div>
+                </div>
+                :
+                <div>
+                    {
+                        results.notes.Notes && results.notes.Notes.map((note) => {
+                            return <NoteCard key={note.Note_Id} note={note}/>
+                        })
+                    }
+                </div>
+            }
         </div>
     )
 }
 
-export default Notes
+const mapStateToProps = (state) => {
+    return {
+        results: state.notes,
+    }
+}
+
+export default connect(mapStateToProps, {startNotesDownload, finishNotesDownload})(Notes)
