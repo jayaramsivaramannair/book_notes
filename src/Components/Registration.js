@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { saveLoginDetails } from '../actions'
 
-const LoginForm = ({ saveLoginDetails }) => {
+
+const Registration = (props) => {
     const [formValues, setFormValues] = useState({
         email: '',
         password: '',
+        confirmPassword: '',
     })
 
     const [loading, setLoading] = useState(false)
@@ -21,30 +21,19 @@ const LoginForm = ({ saveLoginDetails }) => {
 
     const submitForm = (evt) => {
         evt.preventDefault()
-        setLoading(true)
-        axios.post("https://fifty-two-book-notes.herokuapp.com/api/login", formValues)
-            .then((response) => {
-                localStorage.setItem('authToken', response.data.token)
-                console.log(response.data)
-                saveLoginDetails(response.data)
-                setLoading(false)
-                history.push('/dashboard')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        setFormValues({ ...formValues, email: '', password: '' })
     }
+
+
     return (
         <div>
             {
                 (loading) ?
                     <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
-                        <div className="ui text loader" style={{ color: 'black' }}>Hold On Tight</div>
+                        <div className="ui text loader" style={{ color: 'black' }}>In Progress...</div>
                     </div> :
                     <div>
+                        <h2>Registration</h2>
                         <button onClick={() => history.push('/')}>Return to Home</button>
-                        <h2>Login</h2>
                         <form onSubmit={submitForm}>
                             <label >E-Mail:</label>
                             <input
@@ -62,8 +51,15 @@ const LoginForm = ({ saveLoginDetails }) => {
                                 value={formValues.password}
                                 onChange={registerFormValues}
                             />
-                            <button>Login</button>
-                            <button onClick={()=> history.push('/register')}>Don't have an account? Click Here to Register!</button>
+                            <label>Confirm Password:</label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                placeholder="Re-enter your password"
+                                value={formValues.confirmPassword}
+                                onChange={registerFormValues}
+                            />
+                            <button>Register</button>
                         </form>
                     </div>
             }
@@ -71,4 +67,4 @@ const LoginForm = ({ saveLoginDetails }) => {
     )
 }
 
-export default connect(null, { saveLoginDetails })(LoginForm)
+export default Registration

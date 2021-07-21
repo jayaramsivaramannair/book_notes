@@ -30,9 +30,9 @@ const Library = ({ login, results, startLibraryDownload, finishLibraryDownload }
                     :
                     <div>
                         {
-                            results.library.map((result) => {
+                            (results.library) ? results.library.map((result) => {
                                 return <LibraryBook key={result.book_id} book={result} />
-                            })
+                            }) : <div>You do not have any books in your library yet!</div>
                         }
                     </div>
             }
