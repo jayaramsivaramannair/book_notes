@@ -21,6 +21,7 @@ const Library = ({ login, results, startLibraryDownload, finishLibraryDownload }
     return (
         <div>
             <button onClick={navigateToDashboard}>Back to Dashboard</button>
+            <h1 style={{textAlign: 'center'}}>My Library</h1>
             {
                 (results.loading && results.library.length === 0) ?
                     <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>

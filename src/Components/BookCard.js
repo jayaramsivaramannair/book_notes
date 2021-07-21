@@ -1,9 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import { startAddingLibraryBooks, finishAddingLibraryBooks} from '../actions'
 
-export default function BookCard({ book }) {
+const BookCard = ({ book, login, startAddingLibraryBooks, finishAddingLibraryBooks }) => {
 
     if (!book) {
         return <p> There is no image to display </p>
+    }
+
+    const addToLibrary = (evt) => {
+        console.log(`Button clicked!`)
+        startAddingLibraryBooks()
+        const newBookObject = {
+            img_url: book.volumeInfo.imageLinks.thumbnail,
+            author: book.volumeInfo.authors,
+            title: book.volumeInfo.title, 
+        }
+        const userId = login.id
+        finishAddingLibraryBooks(newBookObject, userId)
     }
 
     return (
@@ -22,9 +36,17 @@ export default function BookCard({ book }) {
                 <p>Publication Date: {book.volumeInfo.publishedDate}</p>
                 <div className="buttons">
                     <button className="ui primary">Flip for Details</button>
-                    <button className="ui primary">Add to Library</button>
+                    <button className="ui primary" onClick={addToLibrary}>Add to Library</button>
                 </div>
             </div>
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        login: state.login
+    }
+}
+
+export default connect(mapStateToProps, {startAddingLibraryBooks, finishAddingLibraryBooks})(BookCard)

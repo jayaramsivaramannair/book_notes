@@ -38,7 +38,7 @@ const Dashboard = ({ loading, clearSearch }) => {
             {
                 (loading) ?
                     <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
-                        <div className="ui text loader" style={{ color: 'black' }}>Fetching Books...</div>
+                        <div className="ui text loader" style={{ color: 'black' }}>In Progress......</div>
                     </div> : <Results />
             }
         </div>

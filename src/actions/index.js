@@ -12,6 +12,10 @@ export const fetchBooks = (term) => async dispatch => {
     dispatch({ type: 'FETCH_BOOKS_FINISH', payload: response.data.items })
 }
 
+export const startAddingLibraryBooks = () => {
+    return {type: 'START_LIBRARY_ADDITION'}
+}
+
 export const clearSearch = () => {
     return { type: 'CLEAR_SEARCH_RESULTS' }
 }
@@ -28,6 +32,14 @@ export const finishLibraryDownload = (userId) => async dispatch => {
     const response = await axiosWithAuth().get(`/users/${userId}/library`)
     console.log(response)
     dispatch({ type: 'LIBRARY_DOWNLOAD_FINISH', payload: response.data })
+}
+
+export const finishAddingLibraryBooks = (newBookObject, userId) => async dispatch => {
+    const response = await axiosWithAuth().post(`/users/${userId}/library`, { 
+        ...newBookObject
+    })
+    console.log(response)
+    dispatch({type: 'FINISH_LIBRARY_ADDITION'})
 }
 
 export const startNotesDownload = () => {
