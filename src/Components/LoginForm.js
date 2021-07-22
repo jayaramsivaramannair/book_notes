@@ -36,36 +36,36 @@ const LoginForm = ({ saveLoginDetails }) => {
         setFormValues({ ...formValues, email: '', password: '' })
     }
     return (
+      
+    
         <div>
+            <button onClick={() => history.push('/')}>Return to Home</button>
+            <h2>Login</h2>
+            <form onSubmit={submitForm}>
+                <label >E-Mail:</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                    value={formValues.email}
+                    onChange={registerFormValues}
+                />
+                <label>Password:</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    value={formValues.password}
+                    onChange={registerFormValues}
+                />
+                <button>Login</button>
+                <button onClick={()=> history.push('/register')}>Don't have an account? Click Here to Register!</button>
+            </form>
             {
-                (loading) ?
-                    <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
-                        <div className="ui text loader" style={{ color: 'black' }}>Hold On Tight</div>
-                    </div> :
-                    <div>
-                        <button onClick={() => history.push('/')}>Return to Home</button>
-                        <h2>Login</h2>
-                        <form onSubmit={submitForm}>
-                            <label >E-Mail:</label>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Enter Email"
-                                value={formValues.email}
-                                onChange={registerFormValues}
-                            />
-                            <label>Password:</label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Enter Password"
-                                value={formValues.password}
-                                onChange={registerFormValues}
-                            />
-                            <button>Login</button>
-                            <button onClick={()=> history.push('/register')}>Don't have an account? Click Here to Register!</button>
-                        </form>
-                    </div>
+                (loading) ? 
+                <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
+                    <div className="ui text loader" style={{ color: 'black' }}>Hold On Tight</div>
+                </div> : " "
             }
         </div>
     )
