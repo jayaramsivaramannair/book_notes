@@ -4,13 +4,16 @@ import { useHistory } from 'react-router-dom';
 
 
 const Registration = (props) => {
-    const [formValues, setFormValues] = useState({
+    const initialFormValues = {
+        username: '',
         email: '',
         password: '',
         confirmPassword: '',
-    })
+    }
+    const [formValues, setFormValues] = useState(initialFormValues)
 
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState('')
 
     const history = useHistory()
 
@@ -21,6 +24,21 @@ const Registration = (props) => {
 
     const submitForm = (evt) => {
         evt.preventDefault()
+        const userData = {
+            username: formValues.username,
+            email: formValues.email,
+            password: formValues.password,
+        }
+
+        axios.post("https://fifty-two-book-notes.herokuapp.com/api/register", userData)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+        setFormValues(initialFormValues)
     }
 
 
@@ -35,6 +53,14 @@ const Registration = (props) => {
                         <h2>Registration</h2>
                         <button onClick={() => history.push('/')}>Return to Home</button>
                         <form onSubmit={submitForm}>
+                            <label >Username:</label>
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="Enter Username"
+                                value={formValues.username}
+                                onChange={registerFormValues}
+                            />
                             <label >E-Mail:</label>
                             <input
                                 type="email"
@@ -61,6 +87,7 @@ const Registration = (props) => {
                             />
                             <button>Register</button>
                         </form>
+                        {(message) ? <p>{message}</p> : ''}
                     </div>
             }
         </div>
