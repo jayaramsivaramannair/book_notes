@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { saveLoginDetails } from '../actions'
 import useForm from '../useForm.js'
+import validate from '../validateInfo.js'
 
 
 const LoginForm = ({ saveLoginDetails }) => {
-    const {handleChange, values, setValues} = useForm()
+    const {handleChange, values, setValues, errors, setErrors} = useForm(validate)
 
     const [loading, setLoading] = useState(false)
 
@@ -30,12 +31,10 @@ const LoginForm = ({ saveLoginDetails }) => {
         setValues({...values, email: '', password: ''})
     }
     return (
-      
-    
         <div>
             <button onClick={() => history.push('/')}>Return to Home</button>
             <h2>Login</h2>
-            <form onSubmit={submitForm}>
+            <form onSubmit={submitForm} className="login-form">
                 <div className="form-inputs">
                     <label >E-Mail:</label>
                     <input
@@ -45,6 +44,7 @@ const LoginForm = ({ saveLoginDetails }) => {
                         value={values.email}
                         onChange={handleChange}
                     />
+                    {errors.email && <p>{errors.email}</p>}
                 </div>
                 <div className="form-inputs">
                     <label>Password:</label>
@@ -55,6 +55,7 @@ const LoginForm = ({ saveLoginDetails }) => {
                         value={values.password}
                         onChange={handleChange}
                     />
+                    {errors.password && <p>{errors.password}</p>}
                 </div>
                 <button>Login</button>
                 <button onClick={()=> history.push('/register')}>Don't have an account? Click Here to Register!</button>
