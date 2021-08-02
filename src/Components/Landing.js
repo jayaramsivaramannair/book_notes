@@ -16,9 +16,11 @@ function Landing() {
     return (
         <div className="wrapper">
             <header className="header" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr' }}>
+                {/*
                 <button onClick={navigateDashboard}>
                     Dashboard
                 </button>
+                */}
                 <button onClick={navigateLogin}>
                     Login
                 </button>
