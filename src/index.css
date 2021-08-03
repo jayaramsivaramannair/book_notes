@@ -126,17 +126,31 @@ div.active.modal.large {
 
 }
 
-form {
+.login-form, .register-form {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .login-form div.form-inputs p {
   font-size: 1rem;
+  
 }
 
-.login-form.form-inputs input {
-  outline: none;
+
+form button {
+  width: 50%;
+  margin-top: 10px;
+}
+
+form.form-inputs, input {
+  border-style: none;
+  background-color: aliceblue;
+  margin: 5px;
+  padding: 10px;
 }
 
 
