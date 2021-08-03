@@ -14,6 +14,7 @@ const LoginForm = ({ saveLoginDetails }) => {
 
     const history = useHistory()
 
+
     const submitForm = (evt) => {
         evt.preventDefault()
         setLoading(true)
@@ -30,6 +31,7 @@ const LoginForm = ({ saveLoginDetails }) => {
             })
         setValues({...values, email: '', password: ''})
     }
+
     return (
         <div>
             <button onClick={() => history.push('/')}>Return to Home</button>
@@ -57,17 +59,20 @@ const LoginForm = ({ saveLoginDetails }) => {
                     />
                     {errors.password && <p>{errors.password}</p>}
                 </div>
-                <button>Login</button>
+                <button className={`ui primary ${(loading) ? 'loading' : ''} button`}>Login</button>
                 <button onClick={()=> history.push('/register')}>Don't have an account? Click Here to Register!</button>
             </form>
+        </div>
+    )
+}
+
+export default connect(null, { saveLoginDetails })(LoginForm)
+
+/*
             {
                 (loading) ? 
                 <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
                     <div className="ui text loader" style={{ color: 'black' }}>Hold On Tight</div>
                 </div> : " "
             }
-        </div>
-    )
-}
-
-export default connect(null, { saveLoginDetails })(LoginForm)
+*/

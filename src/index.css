@@ -135,5 +135,9 @@ form {
   font-size: 1rem;
 }
 
+.login-form.form-inputs input {
+  outline: none;
+}
+
 
 

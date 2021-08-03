@@ -10,8 +10,8 @@ export const useForm = (validate) => {
 
     const handleChange = e => {
         const {name, value} = e.target;
-        setErrors(validate(values))
         console.log(name, value)
+        setErrors(validate(values))
         setValues({
             ...values, 
             [name]: value
