@@ -11,6 +11,7 @@ const LoginForm = ({ saveLoginDetails }) => {
     const {handleChange, values, setValues, errors, setErrors} = useForm(validate)
 
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState('')
 
     const history = useHistory()
 
@@ -27,7 +28,9 @@ const LoginForm = ({ saveLoginDetails }) => {
                 history.push('/dashboard')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.message)
+                setMessage(err.message)
+                setLoading(false)
             })
         setValues({...values, email: '', password: ''})
     }
@@ -62,6 +65,14 @@ const LoginForm = ({ saveLoginDetails }) => {
                 <button className={`ui primary ${(loading) ? 'loading' : ''} button`}>Login</button>
                 <button onClick={()=> history.push('/register')}>Don't have an account? Click Here to Register!</button>
             </form>
+            {
+                (message) ? 
+                <div>
+                    <h6>Login Errors:</h6>
+                    {(message) && <p style={{textAlign: 'left'}}>{message}</p>}
+                </div> : ''
+            }
+            
         </div>
     )
 }
