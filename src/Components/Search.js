@@ -6,7 +6,7 @@ import { fetchBooks, startFetching } from '../actions';
 const API = 'AIzaSyBVrXAK-6urEQXprz3uJMZOomYQwgXtj0Y'
 */
 
-const Search = ({ fetchBooks, startFetching, books }) => {
+const Search = ({ fetchBooks, startFetching, loading }) => {
 
     const [term, setTerm] = useState("")
 
@@ -30,9 +30,15 @@ const Search = ({ fetchBooks, startFetching, books }) => {
                 value={term}
                 onChange={startSearch}
             />
-            <button className="ui button" onClick={handleSearch}>Search</button>
+            <button className={`ui primary ${(loading) ? 'loading' : ''} button`} onClick={handleSearch}>Search</button>
         </div>
     )
 }
 
-export default connect(null, { fetchBooks, startFetching })(Search)
+const mapStateToProps = (state) => {
+    return {
+        loading: state.search.loading,
+    }
+}
+
+export default connect(mapStateToProps, { fetchBooks, startFetching })(Search)

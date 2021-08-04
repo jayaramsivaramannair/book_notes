@@ -92,7 +92,13 @@ const Registration = (props) => {
                 </div>
                 <button className={`ui primary ${(loading) ? 'loading' : ''} button`}>Register</button>
             </form>
-            {(message) && <p>{message}</p>}
+            {
+                (message) ? 
+                <div>
+                    <h6>Registration Success:</h6>
+                    {(message) && <p style={{textAlign: 'left'}}>{message}</p>}
+                </div> : ''
+            }
         </div>
     )
 }

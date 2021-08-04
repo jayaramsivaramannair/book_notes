@@ -24,6 +24,7 @@ const Dashboard = ({ loading, clearSearch }) => {
     const logoutUser = (evt) => {
         evt.preventDefault();
         localStorage.removeItem('authToken');
+        clearSearch()
         history.push('/')
     }
 
@@ -36,10 +37,7 @@ const Dashboard = ({ loading, clearSearch }) => {
             </div>
             <Search />
             {
-                (loading) ?
-                    <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
-                        <div className="ui text loader" style={{ color: 'black' }}>In Progress......</div>
-                    </div> : <Results />
+                (loading) ? " " : <Results/>
             }
         </div>
     )
@@ -53,3 +51,13 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { clearSearch })(Dashboard)
+
+
+/*
+            {
+                (loading) ?
+                    <div className="ui active dimmer" style={{ backgroundColor: 'aliceblue' }}>
+                        <div className="ui text loader" style={{ color: 'black' }}>In Progress......</div>
+                    </div> : <Results />
+            }
+*/
