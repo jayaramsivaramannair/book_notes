@@ -5,14 +5,14 @@ import {startNotesDownload, finishNotesDownload} from '../actions'
 import NoteCard from './NoteCard.js'
 
 
-const Notes = ({results, startNotesDownload, finishNotesDownload}) => {
+const Notes = ({results, login, startNotesDownload, finishNotesDownload}) => {
     const {bookid} = useParams()
     console.log(bookid)
     const history = useHistory()
 
     useEffect(() => {
         startNotesDownload()
-        finishNotesDownload(bookid)
+        finishNotesDownload(bookid, login.id)
     }, [])
 
     return (
@@ -39,6 +39,7 @@ const Notes = ({results, startNotesDownload, finishNotesDownload}) => {
 
 const mapStateToProps = (state) => {
     return {
+        login: state.login,
         results: state.notes,
     }
 }

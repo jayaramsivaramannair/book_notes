@@ -38,6 +38,7 @@ export const finishAddingLibraryBooks = (newBookObject, userId) => async dispatc
     const response = await axiosWithAuth().post(`/users/${userId}/library`, { 
         ...newBookObject
     })
+    
     console.log(response)
     dispatch({type: 'FINISH_LIBRARY_ADDITION'})
 }
@@ -46,8 +47,8 @@ export const startNotesDownload = () => {
     return {type: 'NOTES_DOWNLOAD_START'}
 }
 
-export const finishNotesDownload = (bookID) => async dispatch => {
-    const response = await axiosWithAuth().get(`/library/${bookID}/notes`)
+export const finishNotesDownload = (bookID, userID) => async dispatch => {
+    const response = await axiosWithAuth().get(`/library/${userID}/${bookID}/notes`)
     console.log(response)
     dispatch({type: 'NOTES_DOWNLOAD_FINISH', payload: response.data})
 }

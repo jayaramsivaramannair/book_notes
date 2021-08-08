@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { startAddingLibraryBooks, finishAddingLibraryBooks} from '../actions'
 
-const BookCard = ({ book, login, startAddingLibraryBooks, finishAddingLibraryBooks }) => {
+const BookCard = ({ book, login, startAddingLibraryBooks, finishAddingLibraryBooks, loading }) => {
 
     if (!book) {
         return <p> There is no image to display </p>
@@ -36,7 +36,7 @@ const BookCard = ({ book, login, startAddingLibraryBooks, finishAddingLibraryBoo
                 <p>Publication Date: {book.volumeInfo.publishedDate}</p>
                 <div className="buttons">
                     <button className="ui primary">Flip for Details</button>
-                    <button className="ui primary" onClick={addToLibrary}>Add to Library</button>
+                    <button onClick={addToLibrary}>Add to Library</button>
                 </div>
             </div>
         </div>
@@ -45,7 +45,9 @@ const BookCard = ({ book, login, startAddingLibraryBooks, finishAddingLibraryBoo
 
 const mapStateToProps = (state) => {
     return {
-        login: state.login
+        login: state.login,
+        loading: state.search.loading
+
     }
 }
 

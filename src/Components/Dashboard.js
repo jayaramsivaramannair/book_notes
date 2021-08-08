@@ -36,9 +36,7 @@ const Dashboard = ({ loading, clearSearch }) => {
                 <button onClick={logoutUser}>LogOut</button>
             </div>
             <Search />
-            {
-                (loading) ? " " : <Results/>
-            }
+            <Results />
         </div>
     )
 }
@@ -61,3 +59,9 @@ export default connect(mapStateToProps, { clearSearch })(Dashboard)
                     </div> : <Results />
             }
 */
+
+/*
+            {
+                (loading) ? " " : <Results/>
+            }
+            */
