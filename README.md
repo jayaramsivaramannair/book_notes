@@ -15,7 +15,7 @@
 
 # Planned Future Development
 
-- Integration with Twitter API which lets the user to tweet any notes from the note repository
+- Integration with Twitter API which lets the user tweet any notes from the note repository
 
 # Project Preview
 
