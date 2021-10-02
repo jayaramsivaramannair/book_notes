@@ -26,7 +26,6 @@ body {
   text-align: right;
 }
 
-
 .firstPanel {
   height: 50vh;
   width: 40vw;
@@ -34,7 +33,6 @@ body {
   background-position: center;
   background-size: cover;
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -54,7 +52,7 @@ p {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-button  {
+button {
   color: white;
   background-color: #00acee;
   border: 1px solid aliceblue;
@@ -68,7 +66,7 @@ button  {
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: 3px 3px gray, -1em 0 .4em gray;
+  box-shadow: 3px 3px gray, -1em 0 0.4em gray;
 }
 
 .card .image {
@@ -86,7 +84,6 @@ button  {
   align-items: center;
   justify-content: center;
 }
-
 
 .modal-wrapper {
   background: aliceblue;
@@ -123,10 +120,11 @@ div.active.modal.large {
   max-width: 500px;
   opacity: 0.95;
   height: 50vh;
-
 }
 
-.login-form, .register-form {
+.login-form,
+.register-form,
+.notes-form {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -137,21 +135,23 @@ div.active.modal.large {
 
 .login-form div.form-inputs p {
   font-size: 1rem;
-  
 }
-
 
 form button {
   width: 50%;
   margin-top: 10px;
 }
 
-form.form-inputs, input {
+form.form-inputs,
+input,
+textarea {
   border-style: none;
   background-color: aliceblue;
   margin: 5px;
   padding: 10px;
 }
 
-
-
+.notes-form textarea {
+  width: 250px;
+  height: 250px;
+}

@@ -3,6 +3,7 @@ import { useParams , useHistory} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {startNotesDownload, finishNotesDownload} from '../actions'
 import NoteCard from './NoteCard.js'
+import NotesForm from './NotesForm.js';
 
 
 const Notes = ({results, login, startNotesDownload, finishNotesDownload}) => {
@@ -13,11 +14,12 @@ const Notes = ({results, login, startNotesDownload, finishNotesDownload}) => {
     useEffect(() => {
         startNotesDownload()
         finishNotesDownload(bookid, login.id)
-    }, [])
+    }, [ ])
 
     return (
         <div>
             <h1>Note Repository</h1>
+            <NotesForm bookId = {bookid}/>
             <button onClick={() => history.push('/library')}>Back to Library</button>
             {
                 (results.loading && results.notes.length === 0) ?

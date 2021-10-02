@@ -16,6 +16,10 @@ export const startAddingLibraryBooks = () => {
     return {type: 'START_LIBRARY_ADDITION'}
 }
 
+export const startAddingNotes = () => {
+    return {type: 'START_NOTES_ADDITION'}
+}
+
 export const clearSearch = () => {
     return { type: 'CLEAR_SEARCH_RESULTS' }
 }
@@ -41,6 +45,15 @@ export const finishAddingLibraryBooks = (newBookObject, userId) => async dispatc
     
     console.log(response)
     dispatch({type: 'FINISH_LIBRARY_ADDITION'})
+}
+
+export const finishAddingNotes = (newNoteObject, userId, bookId) => async dispatch => {
+    const response = await axiosWithAuth().post(`/library/${userId}/${bookId}/notes`, {
+        ...newNoteObject
+    })
+
+    console.log(response)
+    dispatch({type: 'FINISH_NOTES_ADDITION'})
 }
 
 export const startNotesDownload = () => {
