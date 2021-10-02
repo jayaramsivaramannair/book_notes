@@ -9,7 +9,7 @@ const Results = ({ books, loading }) => {
             {(books && !loading) ?
                 books.map((book, index) => {
                     return <BookCard key={index} book={book} />
-                }) : <div>No Search Results Found!</div>}
+                }) : ""}
         </div>
     )
 }
